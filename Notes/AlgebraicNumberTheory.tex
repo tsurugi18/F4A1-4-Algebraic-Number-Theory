@@ -91,6 +91,7 @@ mysymbol/.style={start anchor=center,end anchor=center,draw=none}
 \newcommand{\F}[0]{\mathbb{F}}
 \newcommand{\G}[0]{\mathbb{G}}
 \newcommand{\A}[0]{\mathbb{A}}
+\newcommand{\Ouv}[0]{\mathcal{O}}
 \newcommand{\Para}[0]{\mathbb{P}}
 \newcommand{\M}[0]{\mathcal{M}}
 \newcommand{\maniN}[0]{\mathcal{N}}
@@ -112,6 +113,9 @@ mysymbol/.style={start anchor=center,end anchor=center,draw=none}
 \author{Lectures given by\\Dr. Alexander Horawa\\Typed by\\So Murata}
 \date{SoSe 26, University of Bonn}
 
+%Todo 
+% Finish the calculation of coroolary_1_6
+
 
 \begin{document}
 \maketitle
@@ -119,7 +123,7 @@ mysymbol/.style={start anchor=center,end anchor=center,draw=none}
 %4/13
 
 \section{Motivation of Algebraic Number Theory}
-
+\subsection{Kummer's Attempt to FLT}
 The goal of the field is to solve the rational polynomial equations. 
 \begin{example}
     Finding all Pythagorean triples $(x,y,z)$. i.e. a triplet $(x,y,z)$ satisfying,
@@ -250,6 +254,142 @@ The following statements are obvious.
     \end{equation*}
 \end{definition}
 \begin{remark}
-    By Lagrange's theorem, we have the following identity. For any ideal $I$ of $\mathcal{O}_K$, $I^{h(K)}$ is principal.
+    By Lagrange's theorem, the following is obvious.
+    \begin{equation*}
+        \text{For any ideal $I$ of $\mathcal{O}_K$, $I^{h(K)}$ is principal.}
+    \end{equation*}
 \end{remark}
+\begin{definition}
+    A prime $p\in\N$ is regular if $p$ does not divide $h(\Q(\omega_p))$.
+\end{definition}
+Under the assumption that $p$ is regular. If we have,
+\begin{equation*}
+    (x+\omega_py)=I^p
+\end{equation*}
+for some ideal $I$, then we can conclude $I$ is principal. Indeed,
+\begin{equation*}
+    1=[(x+\omega_py)]=[I]^p
+\end{equation*}
+in $\Cl(\Q(\omega_p))$. Using $p$ is regular, we conclude,
+\begin{equation*}
+    [I] = 1.
+\end{equation*}
+That is $I=(\alpha)$ for some $\alpha\in\Z[\omega_p]$. Thus we conclude there is some $u\in\Z[\omega_p]^\times$ such that 
+\begin{equation*}
+    x+\omega_py = u\cdot\alpha^p.
+\end{equation*}
+Overall, Kummer used this to prove the following theorem.
+\begin{theorem}[Kummer]
+    If a prime $p$ is regular, then there is no non-zero solutions to 
+    \begin{equation*}
+        x^p+y^p=z^p.
+    \end{equation*}
+\end{theorem}
+
+Again, we run into another issue that there are infinitely many irregular primes. Even worse, we don't know if there are infinitely many regular primes.
+\subsection{The Goal of the Course}
+Let $K/\Q$ be a finite extension (i.e. a number field). We will discuss the following topics (may not cover all).
+\begin{enumerate}[1).]
+    \item $\Ouv_K$ of specific number fields, such as $\Ouv_{\Q(\omega_p)}=\Z[\omega_p]$.
+    \item Ideals and prime decomposition.
+    \item Splitting of primes in extensions.
+    \item Class groups and their finiteness.
+    \item The unit/multiplicative group $\Ouv_K^\times$ is finitely generated.
+    \item Dedekind $\zeta$-functions, (or more specifically $\zeta_K$) and class number formula.
+    \item Analytic formula for $h(K)$.
+    \item Analytic constructions for $\Ouv_K^\times$ which is still an on-going field.
+    \item $L$-functions and Class Field Theory.
+\end{enumerate}
+The prerequisites of the course will be some Commutative algebra as well as some Galois theory. Appendices to \cite{Markus} will cover some part of these prerequisites.
+\section{Number Fields}
+\subsection{Basics}
+\begin{definition}
+\label{definition_1_1}
+A finite field extension $K$ of a $\Q$ is called a number field.
+\end{definition}
+\begin{example}
+    Examples of number fields are $\Q(\sqrt{m})$ for s square free integer $m$ and $\Q(\zeta_m)$.
+\end{example}
+\begin{definition}
+    A number field of the form $\Q(\zeta_m)$ is called a cyclotomic field.
+\end{definition}
+\begin{definition}
+    \label{definition_1_2}
+    Let $K$ be a number field and $\alpha\in K$ be an element. $\alpha$ is said to be integral if there is a monic polynomial $f\in\Z[x]$ such that $f(\alpha) = 0$. The set 
+    \begin{equation*}
+        \Ouv_K\defeq\{\alpha\in K\sep \text{$\alpha$ is integral}\}
+    \end{equation*}
+    is called the ring of integer of $K$.
+\end{definition}
+\begin{remark}
+    The monic polynomial in Definition \ref{definition_1_2} need not be irreducible. For example $\omega_m\in\Ouv_{\Q(\omega_p)}$ is integral as it is a root of $x^m-1$. However, when $m$ is a composite integer then this is not an irreducible polynomial.
+\end{remark}
+\begin{proposition}
+    \label{fact_1_4}
+    \label{proposition_1_4}
+    Let $f\in\Z[x]$ and suppose we have a factorization $f=gh$ in $\Q[x]$. If $g,h$ are monic then $g,h\in\Z[x]$.
+\end{proposition}
+\begin{theorem}
+    \label{theorem_1_3}
+    If $\alpha\in\Ouv_K$ then (monic) minimal polyinomial of $\alpha$ is in $\Z[x]$. 
+\end{theorem}
+\begin{proof}
+By definition, there is a monic polynomial $f\in\Z[x]$ which takes $\alpha$ as a solution. Take $f$ to be the least degree, we will show $f$ is irreducible over $\Q$. Suppose we have the decomposition,
+\begin{equation*}
+    f = gh
+\end{equation*}
+for some $g,h\in \Q[x]$ where $g,h$ are not constant polynomials. As $f$ is monic, by rescaling the polynomial, we assume without loss of generality that $g,h$ are monic. By Proposition \ref{proposition_1_4}, we conclude $g,h\in\Z[x]$. However, this contradicts to the minimality of the degree of $f$. Therefore, $f$ is irreducible.
+\end{proof}
+\begin{corollary}
+    \label{corollary_1_5}
+    \begin{equation*}
+        \Ouv_\Q=\Z.
+    \end{equation*}
+\end{corollary}
+Let $m\in\N$ be a square free and $K=\Q(\sqrt{m})$. Clearly we have,
+\begin{equation*}
+    \Z[\sqrt{m}]\subseteq\Ouv_K.
+\end{equation*}
+\begin{corollary}
+    \label{corollary_1_6}
+    Let $m\in\N$ be a square-free. We have,
+    \begin{equation*}
+        \Ouv_{\Q(\sqrt{m})} =
+        \begin{cases}
+            \Z[\sqrt{m}],\quad(m\equiv 2,3\mod{4}),\\
+            \Z\left[{\frac {1+\sqrt{m}} 2}\right]\quad (m\equiv1\mod{4}).
+        \end{cases}
+    \end{equation*}
+\end{corollary}
+\begin{proof}
+    Let $\alpha = r+s\sqrt{m}\in\Q(\sqrt{m})$ for some $s\not=0$. We have,
+    \begin{equation*}
+        (\alpha-r)^2 = ms^2.
+    \end{equation*}
+    Thus $\alpha$ has a minimal polynomial,
+    \begin{equation*}
+        x^2-2rx+r^2-ms^2=0.
+    \end{equation*}
+    Thus $\alpha\in\Ouv_{\Q(\sqrt{m})}$ if and only if 
+    \begin{equation*}
+        2r\in\Z,r^2-ms^2\in\Z.
+    \end{equation*}
+    If $r\in \Z$ then $s\in\Z$ as $m$ is square-free. From the first equation, we have $r={\frac {r'} 2}$ for some $r'\in\Z$. Thus suppose $r'$ is an odd integer. Then we have,
+    \begin{equation*}
+        (r')^2-4ms^2\in4\Z.
+    \end{equation*}
+    Immediately, we see that $s$ is not an integer. Similarly, we have $s = {\frac {s'} 2}$ for some $s'$ odd. Substituting this, we get,
+    \begin{equation*}
+        (r')^2-m(s')^2\equiv 0\mod{4}.
+    \end{equation*}
+    As $r',s'$ are odd, the equation leads us to,
+    \begin{equation*}
+        1-m\equiv0\mod{4}.
+    \end{equation*}
+    It is an exercise to complete the detail of the proof.
+\end{proof}
+\begin{thebibliography}{9}
+\bibitem{Markus}
+Marcus, Daniel A (2012) \emph{Number Fields}, Universitext. Springer-Verlag, New York, 1977.
+\end{thebibliography}
 \end{document}

@@ -1,11 +1,11 @@
 # Fdb version 4
-["dvipdf"] 1776077981.30287 "AlgebraicNumberTheory.dvi" "AlgebraicNumberTheory.pdf" "AlgebraicNumberTheory" 1776077981.44949 0
-  "AlgebraicNumberTheory.dvi" 1776077981.2804 19468 d04fc9db60384932b8c553cb0d81c1dc "latex"
+["dvipdf"] 1776080940.39496 "AlgebraicNumberTheory.dvi" "AlgebraicNumberTheory.pdf" "AlgebraicNumberTheory" 1776080940.55416 0
+  "AlgebraicNumberTheory.dvi" 1776080940.37285 28500 9fd31b0eeaea93cd8779fc7c93a3daf0 "latex"
   (generated)
   "AlgebraicNumberTheory.pdf"
   (rewritten before read)
-["latex"] 1776077980.93644 "/Users/tsurugi/Desktop/Universities/UniBonn/Semester4/V3A4 - Algebraic Number Theory/Notes/AlgebraicNumberTheory.tex" "AlgebraicNumberTheory.dvi" "AlgebraicNumberTheory" 1776077981.44849 0
-  "/Users/tsurugi/Desktop/Universities/UniBonn/Semester4/V3A4 - Algebraic Number Theory/Notes/AlgebraicNumberTheory.tex" 1776077980.72108 9074 313b2293999878a922b8b80972b63460 ""
+["latex"] 1776080940.06683 "/Users/tsurugi/Desktop/Universities/UniBonn/Semester4/V3A4 - Algebraic Number Theory/Notes/AlgebraicNumberTheory.tex" "AlgebraicNumberTheory.dvi" "AlgebraicNumberTheory" 1776080940.55312 0
+  "/Users/tsurugi/Desktop/Universities/UniBonn/Semester4/V3A4 - Algebraic Number Theory/Notes/AlgebraicNumberTheory.tex" 1776080939.48318 15053 ac85faf65379d38bdd6f9a5e2312c8d0 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -149,8 +149,8 @@
   "/usr/local/texlive/2025/texmf-dist/web2c/texmf.cnf" 1739380943 42148 61becc7c670cd061bb319c643c27fdd4 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/latex.fmt" 1760893821 3345650 f2179b917b551c7214098855962de784 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "AlgebraicNumberTheory.aux" 1776077981.27995 318 dbe68afb45e412dd01415dc156df9ed8 "latex"
-  "AlgebraicNumberTheory.tex" 1776077980.72108 9074 313b2293999878a922b8b80972b63460 ""
+  "AlgebraicNumberTheory.aux" 1776080940.37225 1166 9815ecb7642d498cea7c945d102c7f48 "latex"
+  "AlgebraicNumberTheory.tex" 1776080939.48318 15053 ac85faf65379d38bdd6f9a5e2312c8d0 ""
   (generated)
   "AlgebraicNumberTheory.aux"
   "AlgebraicNumberTheory.dvi"
