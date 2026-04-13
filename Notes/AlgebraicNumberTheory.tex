@@ -1,0 +1,255 @@
+\documentclass[10pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{ mathrsfs }
+\usepackage{ mathtools}
+\usepackage{enumerate}
+\usepackage{bbm}
+\usepackage{lipsum}
+\usepackage{fancyhdr}
+\usepackage{tikz-cd} 
+\usepackage{adjustbox} 
+\usetikzlibrary{arrows}
+\newcommand{\midarrow}{\tikz \draw[-triangle 90] (0,0) -- +(.1,0);}
+\tikzset{commutative diagrams/.cd,
+mysymbol/.style={start anchor=center,end anchor=center,draw=none}
+}
+\newcommand\comsymb[2][\circlearrowleft]{%
+  \arrow[mysymbol]{#2}[description]{#1}}
+
+\newtheorem{theorem}{Theorem} [section] 
+\newtheorem{proposition}{Proposition}[section] 
+\newtheorem{definition}{Definition}[section] 
+\newtheorem{lemma}{Lemma}[section] 
+\newtheorem{notation}{Notation}[section] 
+\newtheorem{remark}{Remark}[section] 
+\newtheorem{corollary}{Corollary} [section] 
+\newtheorem{terminology}{Terminology}[section] 
+\newtheorem{fact}{Fact}[section] 
+\newtheorem{example}{Example}[section] 
+\newtheorem{claim}{Claim}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+\DeclareMathOperator{\triv}{triv}
+\DeclareMathOperator{\ind}{ind}
+\DeclareMathOperator{\straw}{s.t.}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\Cl}{Cl}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Map}{Map}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\Sp}{Sp}
+\DeclareMathOperator{\esssup}{esssup}
+\DeclareMathOperator{\abs}{abs}
+\DeclareMathOperator{\rel}{rel}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Homk}{Hom_{k-alg}}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Image}{Im}
+\DeclareMathOperator{\Dom}{Dom}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\divergence}{div}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\MaxSpec}{MaxSpec}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\PD}{PD}
+\DeclareMathOperator{\ext}{ext}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\inte}{int}
+\DeclareMathOperator{\diverg}{div}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\image}{im}
+\DeclareMathOperator{\dR}{dR}
+\DeclareMathOperator{\Ob}{Ob}
+\DeclareMathOperator{\Mnfd}{Mnfd}
+\DeclareMathOperator{\OpEmb}{OpEmb}
+%\newcommand*{\name}[\num_arguments][default values]{{\color{#1}\Large #2}}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\norm}[1]{\Vert #1 \Vert}
+\newcommand{\opNorm}[2]{\norm{#1}_{#2\to#2}}
+\newcommand{\normL}[3]{\norm{#1}_{L^{#2}(#3)}}
+\newcommand{\N}[0]{\mathbb{N}}
+\newcommand{\m}[0]{\mathfrak{m}}
+\newcommand{\R}[0]{\mathbb{R}}
+\newcommand{\Z}[0]{\mathbb{Z}}
+\newcommand{\C}[0]{\mathbb{C}}
+\newcommand{\Q}[0]{\mathbb{Q}}
+\newcommand{\F}[0]{\mathbb{F}}
+\newcommand{\G}[0]{\mathbb{G}}
+\newcommand{\A}[0]{\mathbb{A}}
+\newcommand{\Para}[0]{\mathbb{P}}
+\newcommand{\M}[0]{\mathcal{M}}
+\newcommand{\maniN}[0]{\mathcal{N}}
+\newcommand{\cinf}[0]{\mathcal{C}^\infty}
+\newcommand{\torus}[0]{\mathbb{T}}
+\newcommand{\sep}[0]{\:|\:}
+\newcommand{\pd}[2]{{\frac {\partial #1} {\partial #2}}}
+\newcommand{\compinc}[0]{\subset \subset}
+\newcommand{\sH}[0]{\mathscr{H}}
+\newcommand{\st}[0]{\:\straw\:}
+\newcommand{\fib}[1]{%
+  \mathbin{\mathop{\times}\limits_{#1}}%
+}
+\newcommand{\tens}[1]{%
+  \mathbin{\mathop{\otimes}\displaylimits_{#1}}%
+}
+
+\title{Algebraic Number Theory}
+\author{Lectures given by\\Dr. Alexander Horawa\\Typed by\\So Murata}
+\date{SoSe 26, University of Bonn}
+
+
+\begin{document}
+\maketitle
+
+%4/13
+
+\section{Motivation of Algebraic Number Theory}
+
+The goal of the field is to solve the rational polynomial equations. 
+\begin{example}
+    Finding all Pythagorean triples $(x,y,z)$. i.e. a triplet $(x,y,z)$ satisfying,
+    \begin{equation*}
+    x^2+y^2=z^2.
+    \end{equation*}
+    The obstacle here is that the equation is stated in both products and sums.
+    To overcome this problem, we consider,
+    \begin{equation*}
+    (x+iy)(x-iy) = z^2.
+    \end{equation*}
+    The equation holds in the ring $\Z[i]$. In this form, we will be able to consider the prime factors of $z$. This is justified by the following proposition.
+\end{example}
+\begin{proposition}
+    $\Z[i]$ is a UFD.
+\end{proposition}
+\begin{proof}
+    Exercise.
+\end{proof}
+\begin{corollary}
+    $\Z[i]^\times = \{\pm1,\pm i\}$.
+\end{corollary}
+\begin{proof}
+    Exercise.
+\end{proof}
+\begin{lemma}
+    \label{lemma_prime_divisor_z}
+    Suppose $\pi\in\Z[i]$ be an irreducible such that for a primitive Pythagorean triplet $(x,y,z)$ we have $\pi\mid z$. Then $\pi$ divides exactly one of $x+iy$ and $x-iy$ so does $\pi^2$.
+\end{lemma}
+\begin{proof}
+    If $\pi$ divides $(x+iy)$ and $(x-iy)$ simultaneously, we get a contradiction as the triplet is primitive.
+\end{proof}
+\begin{corollary}
+    \label{corollary_factor_z_square}
+    In the above setting, we have,
+    \begin{equation*}
+    x+ iy = u\alpha^2
+    \end{equation*}
+    where $\alpha\in\Z[i]$ and $u\in\Z[i]^\times$.
+\end{corollary}
+\begin{proof}
+    By Lemma \ref{lemma_prime_divisor_z}, the statement clearly follows. 
+\end{proof}
+\begin{theorem}
+    All Pythagorean triples $(x,y,z)$ are of the following form.
+    \begin{equation*}
+    (x,y,z) = (\pm(m^2-n^2),\pm2mn,\pm(m^2+n^2))
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    By Corollary \ref{corollary_factor_z_square}, suppose $\alpha = m+in$ for some $m,n\in\Z$. Without loss of generality, we assume $u=1$. We have,
+    \begin{equation*}
+        \alpha^2 = m^2-n^2+2imn,\overline{\alpha}^2 = m^2-n^2-2imn.
+    \end{equation*}
+    The statement then follows.
+\end{proof}
+Another important example would be the following celebrated theorem.
+\begin{theorem}[Fermat-Wiles]
+    For all $n\in\N$, if $n\geq3$ then there does not exist a triplet $(x,y,z)\in (\Z\backslash\{0\})^3$ such that 
+    \begin{equation*}
+        x^n+y^n = z^n.
+    \end{equation*}
+\end{theorem}
+The case where $n=3,4$ are elementary. Also the statement is equivalent to say that it holds for all prime numbers greater or equal to $3$. We will go through Kummer's attempt to prove Fermat's Last Theorem.
+\begin{notation}
+A $n$-th primitive root will be denoted by $\omega_n$. 
+\end{notation}
+\begin{remark}
+    Two important rings are
+    \begin{equation*}
+        \Z[\omega_p]\subseteq\Q(\omega_p).
+    \end{equation*}
+    As we have seen it in Galois theory, $\Q(\omega_p)$ is a splitting field of $x^p-1$ over $\Q$.
+\end{remark}
+Over $\Z[\omega_p]$, we have the following factorization,
+\begin{equation*}
+    x^p+y^p = \prod_{i=0}^{p-1}(x+\omega_p^iy).
+\end{equation*}
+\begin{remark}
+    If $\Z[\omega_p]$ is a UFD, then there are no solutions to FLT. 
+\end{remark}
+However, $\Z[\omega_p]$ is rarely a UFD. We will see this explicitly in Homework 1.
+\begin{theorem}
+There are finitely many primes $p$ such that $\Z[\omega_p]$ is a UFD.
+\end{theorem}
+Kummer's main idea was that even though $\Z[\omega_p]$ fails to be a UFD, we can factor ideals of $\Z[\omega_p]$ uniquely into prime ideals. The ideal version of the factorization would be the following.
+\begin{equation*}
+    (x+y)(x+\omega_py)\cdots(x+\omega^{p-1}y) = (z)^p,
+\end{equation*}
+then there is an ideal $I\subseteq\Z[\omega_p]$ such that 
+\begin{equation*}
+    (x+\omega_py)=I^p.
+\end{equation*}
+If $I$ happens to be principle, (i.e. $I=(\alpha)$) then we have,
+\begin{equation*}
+    x+\omega_py = u\cdot\alpha^p
+\end{equation*}
+where $u\in\Z[\omega_p]^\times$. 
+\par However, the above attempt also runs into a problem. That is $\Z[\omega_p]$ may not be a PID. In general we consider,
+\begin{enumerate}
+    \item A field $K$ which is a fintie extension of $\Q$ which we will call the Number Field.
+    \item $\mathcal{O}_K$ which is the set of integral elements of $K$ which we will call the Ring of Integers.
+\end{enumerate}
+\begin{example}
+    For $K=\Q(\omega_p)$, we have $\mathcal{O}_K = \Z[\omega_p]$.
+\end{example}
+The classs group measures how far ideals are from being principal.
+\begin{definition}
+\begin{equation*}
+    \Cl(K)\defeq \{\text{ideals of $\mathcal{O}_K$}\}/\{\text{principal ideals of $\mathcal{O}_K$}\}.
+\end{equation*}
+\end{definition}
+\begin{remark}
+    The class group is not necessarily abelian. 
+\end{remark}
+The following statements are obvious.
+\begin{enumerate}
+    \item An ideal $I$ of $\mathcal{O}_K$ is principale if and only if $[I]\in\Cl(K)$ is trivial.
+    \item $\mathcal{O}_K$ is a PID if and only if $\Cl(K) = \{1\}$.
+\end{enumerate}
+\begin{theorem}
+    $\Cl(K)$ is finite.
+\end{theorem}
+\begin{definition}
+    For a number field $K$, we define the class number of $K$ as
+    \begin{equation*}
+        h(K)\defeq\#\Cl(K).
+    \end{equation*}
+\end{definition}
+\begin{remark}
+    By Lagrange's theorem, we have the following identity. For any ideal $I$ of $\mathcal{O}_K$, $I^{h(K)}$ is principal.
+\end{remark}
+\end{document}
